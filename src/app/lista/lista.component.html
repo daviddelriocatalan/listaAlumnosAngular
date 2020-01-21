@@ -1,5 +1,7 @@
-<button type="button" class="btn btn-dark" (click)="mostrarFormularioCrearAlumno()">Crear Musico</button>
-<br>
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-dark m-5" (click)="mostrarFormularioCrear()">Crear Musico</button>
+</div>
+
 <hr>
 <table class="table table-bordered table-striped tabla">
     <thead>
@@ -13,36 +15,76 @@
             <td>{{ musico.id }}</td>
             <td>{{ musico.nombre }}</td>
             <td><button class="btn btn-success" (click)="verMusico(musico)"> Ver Musico </button></td>
-            <td><button class="btn btn-warning" (click)="mostrarFormularioModificarAlumno(musico)"> Modificar Musico
-                </button></td>
+            <td><button class="btn btn-warning" (click)="mostrarFormularioModificar(musico)"> Modificar Musico </button>
+            </td>
             <td><button class="btn btn-danger" (click)="borrarMusico(musico)"> Borrar Musico </button></td>
         </tr>
     </tbody>
 </table>
 
-<div *ngIf="verFormulario">
-    <table>
-        <tr>
-            <td>ID: </td>
-            <td><input type="text" class="form-control" placeholder="ID" disabled></td>
-        </tr>
-        <tr>
-            <td>Nombre: </td>
-            <td><input type="text" class="form-control" [(ngModel)]="nombreMusico" placeholder="Nombre Músico"></td>
-        </tr>
-        <tr>
-            <td>Apellidos: </td>
-            <td><input type="text" class="form-control" [(ngModel)]="apellidoMusico" placeholder="Apellidos Músico">
-            </td>
-        </tr>
-        <tr>
-            <td>Ciudad: </td>
-            <td><input type="text" class="form-control" [(ngModel)]="ciudadMusico" placeholder="Ciudad Músico"></td>
-        </tr>
-        <tr>
-            <td>Grupos: </td>
-            <td><input type="text" class="form-control" [(ngModel)]="grupoMusico" placeholder="Grupo"></td>
-        </tr>
-    </table>
-    <button class="btn btn-primary" (click)="crearMusico()"> Crear Musico </button>
+<div *ngIf="!verFormularioCrear">
+    <div class="d-flex justify-content-center">
+        <h3>Crear</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <table>
+            <tr>
+                <td>ID: </td>
+                <td><input type="text" class="form-control" placeholder="ID" disabled></td>
+            </tr>
+            <tr>
+                <td>Nombre: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="nombreMusico" [placeholder]="nombreMusico"></td>
+            </tr>
+            <tr>
+                <td>Apellidos: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="apellidoMusico" [placeholder]="apellidoMusico">
+                </td>
+            </tr>
+            <tr>
+                <td>Ciudad: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="ciudadMusico" [placeholder]="ciudadMusico"></td>
+            </tr>
+            <tr>
+                <td>Grupos: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="grupoMusico" [placeholder]="grupoMusico"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-primary m-3" (click)="crearMusico()"> Crear Musico </button>
+    </div>
+</div>
+<div *ngIf="!verFormularioModificar">
+    <div class="d-flex justify-content-center">
+        <h3>Modificar</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <table>
+            <tr>
+                <td>ID: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="idMusico" [placeholder]="idMusico" disabled></td>
+            </tr>
+            <tr>
+                <td>Nombre: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="nombreMusico" [placeholder]="nombreMusico"></td>
+            </tr>
+            <tr>
+                <td>Apellidos: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="apellidoMusico" [placeholder]="apellidoMusico">
+                </td>
+            </tr>
+            <tr>
+                <td>Ciudad: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="ciudadMusico" [placeholder]="ciudadMusico"></td>
+            </tr>
+            <tr>
+                <td>Grupos: </td>
+                <td><input type="text" class="form-control" [(ngModel)]="grupoMusico" [placeholder]="grupoMusico"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-primary m-3" (click)="modificarMusico()"> Modificar Musico </button>
+    </div>
 </div>

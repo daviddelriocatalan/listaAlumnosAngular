@@ -9,67 +9,97 @@ import { Musico } from '../modelos/musico.modelo';
 })
 export class ListaComponent implements OnInit {
 
-  musicos:Array<Musico> = [
-    {id: 1 , nombre: 'Freddie', apellidos: 'Mercury', ciudad: 'Londres', grupos: ['Queen', 'Freddie&Montse']},
-    {id: 2 , nombre: 'Eric', apellidos: 'Clapton', ciudad: 'Londres', grupos: ['Cream', 'The Yardbirds', 'Derek & Dominos']},
-    {id: 3 , nombre: 'James', apellidos: 'Hetfield', ciudad: 'San Francisco', grupos: ['Metallica']},
-    {id: 4 , nombre: 'Adam', apellidos: 'Lambert', ciudad: 'Los Angeles', grupos: ['Queen + Adam Lambert']},
-    {id: 5 , nombre: 'Robert', apellidos: 'Plant', ciudad: 'London', grupos: ['The New Yardbirds', 'Led Zeppelin']}
+  musicos: Array<Musico> = [
+    { id: 0, nombre: 'Freddie', apellidos: 'Mercury', ciudad: 'Londres', grupos: 'Queen, Freddie&Montse' },
+    { id: 1, nombre: 'Eric', apellidos: 'Clapton', ciudad: 'Londres', grupos: 'Cream, The Yardbirds, Derek & Dominos' },
+    { id: 2, nombre: 'James', apellidos: 'Hetfield', ciudad: 'San Francisco', grupos: 'Metallica' },
+    { id: 3, nombre: 'Adam', apellidos: 'Lambert', ciudad: 'Los Angeles', grupos: 'Queen + Adam Lambert' },
+    { id: 4, nombre: 'Robert', apellidos: 'Plant', ciudad: 'London', grupos: 'The New Yardbirds, Led Zeppelin' }
   ];
 
-  verMusico(musico){
+  calcularIdNuevoMusico() {
+    console.log(this.musicos.length + 1);
+    return this.musicos.length + 1;
+  }
+
+  verMusico(musico) {
     alert("ID: " + musico.id + " - Nombre: " + musico.nombre + " - Apellidos: " + musico.apellidos + " - Ciudad: " + musico.ciudad + " - Grupos: " + musico.grupos);
   }
 
-  verFormulario : boolean = false;
+  verFormularioCrear: boolean = true;
+  verFormularioModificar: boolean = true;
 
-  mostrarFormularioCrearAlumno(){
-    if (this.verFormulario) {
-      this.verFormulario = false;
-    } else{
-      this.verFormulario = true;
+  mostrarFormularioCrear() {
+    if (this.verFormularioCrear) {
+      this.verFormularioCrear = false;
+    } else {
+      this.verFormularioCrear = true;
     }
   }
 
-  mostrarFormularioModificarAlumno(musico){
-    if (this.verFormulario) {
-      this.verFormulario = false;
-    } else{
-      this.verFormulario = true;
+  idMusico: string;
+  nombreMusico: string = "Name";
+  apellidoMusico: string = "SHURname";
+  ciudadMusico: string = "City";
+  grupoMusico: string = "Band";
+
+  mostrarFormularioModificar(musico) {
+    if (this.verFormularioModificar) {
+      this.verFormularioModificar = false;
+      console.log("ID: " + musico.id + " - Nombre: " + musico.nombre + " - Apellidos: " + musico.apellidos + " - Ciudad: " + musico.ciudad + " - Grupos: " + musico.grupos);
+      this.idMusico = musico.id;
+      this.nombreMusico = musico.nombre;
+      this.apellidoMusico = musico.apellidos;
+      this.ciudadMusico = musico.ciudad;
+      this.grupoMusico = musico.grupos;
+    } else {
+      this.verFormularioModificar = true;
+      this.nombreMusico = "Name";
+      this.apellidoMusico = "SHURname";
+      this.ciudadMusico = "City";
+      this.grupoMusico = "Band";
+
     }
-  }
+  }  
 
-  calcularIdNuevoMusico(){
-    let idMusicos  = this.musicos.length;
-    console.log(idMusicos + 1);
-    return idMusicos + 1;
-  }
-
-  nombreMusico : String;
-  apellidoMusico : String;
-  ciudadMusico : String;
-  grupoMusico : String;
-  
-  crearMusico(){
-    this.musicos.push({id: this.calcularIdNuevoMusico() , nombre: this.nombreMusico, apellidos: this.apellidoMusico, ciudad: this.ciudadMusico, grupos: [this.grupoMusico]});
+  crearMusico() {
+    this.musicos.push({ id: this.calcularIdNuevoMusico(), nombre: this.nombreMusico, apellidos: this.apellidoMusico, ciudad: this.ciudadMusico, grupos: this.grupoMusico });
     //alert("Nombre: " + this.nombreMusico + " - Apellidos: " + this.apellidoMusico + " - Ciudad: " + this.ciudadMusico + " - Grupos: " + this.grupoMusico);
   }
 
-  modificarMusico(){
+  modificarMusico() {
     console.log("MODIFICAR MUSICO");
+
+    for (let i = 0; i < this.musicos.length; i++) {
+      if (this.musicos[i].id == parseInt(this.idMusico)) {
+        this.musicos.splice(i, 1);
+        console.log("MODIFICADO BORRADO");
+        this.musicos.push({ id: parseInt(this.idMusico), nombre: this.nombreMusico, apellidos: this.apellidoMusico, ciudad: this.ciudadMusico, grupos: this.grupoMusico });
+        console.log("MODIFICADO CREADO");
+      }
+    }
+
   }
 
-  borrarMusico(){
+  borrarMusico(musico) {
     console.log("BORRAR MUSICO");
+    console.log(musico.id);
+
+    for (let i = 0; i < this.musicos.length; i++) {
+      if (this.musicos[i].id == musico.id) {
+        this.musicos.splice(i, 1);
+        console.log("BORRADO");
+      }
+    }
   }
 
-  constructor() { 
+  constructor() {
 
     /* this.musicos.push({id: 2 , nombre: 'Eric', apellidos: 'Clapton', ciudad: 'Londres', grupos: ['Cream', 'The Yardbirds', 'Derek & Dominos']});
     this.musicos.push({id: 3 , nombre: 'James', apellidos: 'Hetfield', ciudad: 'San Francisco', grupos: ['Metallica']});
     this.musicos.push({id: 4 , nombre: 'Adam', apellidos: 'Lambert', ciudad: 'Los Angeles', grupos: ['Queen + Adam Lambert']});
     this.musicos.push({id: 5 , nombre: 'Robert', apellidos: 'Plant', ciudad: 'London', grupos: ['The New Yardbirds', 'Led Zeppelin']}); */
-  
+
 
 
   }
