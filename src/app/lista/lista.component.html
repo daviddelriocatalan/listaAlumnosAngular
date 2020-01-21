@@ -1,0 +1,29 @@
+<button type="button" class="btn btn-dark" (click)="mostrarFormularioCrearAlumno()">Crear Musico</button>
+<br>
+<hr>
+<table class="table table-bordered table-striped tabla">
+    <thead>
+        <tr class="filters">
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let musico of musicos">
+            <td>{{ musico.id }}</td>
+            <td>{{ musico.nombre }}</td>
+            <td><button class="btn btn-success" (click)="verMusico(musico)"> Ver Musico </button></td>
+            <td><button class="btn btn-warning" (click)="verMusico(musico)"> Modificar Musico </button></td>
+            <td><button class="btn btn-danger" (click)="verMusico(musico)"> Borrar Musico </button></td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="verFormularioCrearAlumno">
+    <button class="btn btn-danger" (click)="calcularIdNuevoMusico()"> ID NEW Musician </button>
+    <input type="text" >
+    <input type="text" >
+    <input type="text" >
+    <input type="text" >
+    <input type="text" >
+</div>
