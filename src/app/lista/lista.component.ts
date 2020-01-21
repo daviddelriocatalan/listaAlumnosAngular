@@ -21,25 +21,46 @@ export class ListaComponent implements OnInit {
     alert("ID: " + musico.id + " - Nombre: " + musico.nombre + " - Apellidos: " + musico.apellidos + " - Ciudad: " + musico.ciudad + " - Grupos: " + musico.grupos);
   }
 
-  verFormularioCrearAlumno : boolean = false;
+  verFormulario : boolean = false;
 
   mostrarFormularioCrearAlumno(){
-    if (this.verFormularioCrearAlumno) {
-      this.verFormularioCrearAlumno = false;
+    if (this.verFormulario) {
+      this.verFormulario = false;
     } else{
-      this.verFormularioCrearAlumno = true;
+      this.verFormulario = true;
     }
   }
 
-  idMusicos : number = this.musicos.length;
-
-  calcularIdNuevoMusico(){
-    console.log(this.idMusicos + 1);
-    return this.idMusicos + 1;
+  mostrarFormularioModificarAlumno(musico){
+    if (this.verFormulario) {
+      this.verFormulario = false;
+    } else{
+      this.verFormulario = true;
+    }
   }
 
-  crearMusico(){
+  calcularIdNuevoMusico(){
+    let idMusicos  = this.musicos.length;
+    console.log(idMusicos + 1);
+    return idMusicos + 1;
+  }
 
+  nombreMusico : String;
+  apellidoMusico : String;
+  ciudadMusico : String;
+  grupoMusico : String;
+  
+  crearMusico(){
+    this.musicos.push({id: this.calcularIdNuevoMusico() , nombre: this.nombreMusico, apellidos: this.apellidoMusico, ciudad: this.ciudadMusico, grupos: [this.grupoMusico]});
+    //alert("Nombre: " + this.nombreMusico + " - Apellidos: " + this.apellidoMusico + " - Ciudad: " + this.ciudadMusico + " - Grupos: " + this.grupoMusico);
+  }
+
+  modificarMusico(){
+    console.log("MODIFICAR MUSICO");
+  }
+
+  borrarMusico(){
+    console.log("BORRAR MUSICO");
   }
 
   constructor() { 

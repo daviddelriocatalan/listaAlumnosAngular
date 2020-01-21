@@ -1,11 +1,11 @@
 export class Musico {
     public id: number;
-    public nombre: string; 
-    public apellidos: string;
-    public ciudad: string;
-    public grupos:Array<string> = []; 
+    public nombre: String; 
+    public apellidos: String;
+    public ciudad: String;
+    public grupos:Array<String> = []; 
 
-    constructor (id: number, nombre: string, apellidos: string, ciudad: string, grupos:Array<string>){
+    constructor (id: number, nombre: String, apellidos: String, ciudad: String, grupos:Array<String>){
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos; 
