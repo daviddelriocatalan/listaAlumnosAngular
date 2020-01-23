@@ -18,8 +18,8 @@ export class ListaComponent implements OnInit {
   ];
 
   calcularIdNuevoMusico() {
-    console.log(this.musicos.length + 1);
-    return this.musicos.length + 1;
+    console.log(this.musicos.length);
+    return this.musicos.length;
   }
 
   verMusico(musico) {
